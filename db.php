@@ -10,5 +10,5 @@ if (!$conn) {
 }
 
 echo "connected succesfully";
-
+echo "Test...";
 ?>
