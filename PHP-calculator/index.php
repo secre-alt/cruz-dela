@@ -36,7 +36,7 @@
                 <input type="submit" name="num" value=".">
                 <input type="submit" name="operation" value="+" class="operation">
             </div>
-            <button type="submit" name="submit" value="calculate">=</button>
+            <button type="submit" name="submit" value="calculate" class="equal-button">=</button>
         </form>
     </div>
 </body>
