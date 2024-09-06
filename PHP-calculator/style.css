@@ -5,36 +5,29 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: linear-gradient(120deg, #f6f7f8, #e2e2e2);
+    background-color: #e2e2e2;
 }
 
 .calculator {
-    background: #2a2a2a;
-    padding: 20px;
+    background: #333;
+    padding: 20px 25px;
     border-radius: 20px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     text-align: center;
-    max-width: 300px;
-    width: 320px;
-    transition: transform 0.3s ease, box-shadow 0.4s ease;
-}
-
-.calculator:hover {
-    transform: scale(1.02);
-    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.35);
+    max-width: 320px;
+    width: 100%;
 }
 
 .display {
-    background-color: #1e1e1e;
-    text-align: right;
+    background-color: #222;
+    color: #0ae6ee;
     font-size: 2.5em;
-    padding: 20px;
+    text-align: right;
+    padding: 10px;
     border-radius: 10px;
-    color: #f4f7f6;
-    margin-bottom: 20px;
-    box-shadow: inset 0 -3 5px rgba(0, 0, 0, 0.5);
-    word-wrap: break-word;
+    margin-bottom: 15px;
     min-height: 60px;
+    box-shadow: inset 0 -3px 5px rgba(0, 0, 0, 0.5);
 }
 
 .buttons {
@@ -43,85 +36,84 @@ body {
     grid-gap: 10px;
 }
 
-.calculator input[type="submit"],
+.calculator input[type="submit"], 
 .calculator button {
     width: 100%;
     height: 70px;
     font-size: 1.5em;
-    border-radius: 10px;
+    font-weight: bold;
+    border-radius: 5px;
     border: 2px solid #444;
-    background: linear-gradient(145deg, #666, #333);
-    color: #f4f7f6;
+    background: linear-gradient(145deg, #666,
+    #333);
+    color: #c1d4cf;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), 
     -4px -4px 8px rgba(255, 255, 255, 0.1);
 }
 
-.calculator input[type="submit"]:hover,
+.calculator input[type="submit"]:hover, 
 .calculator button:hover {
-    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.3), 
+    box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.3),
     inset -4px -4px 8px rgba(255, 255, 255, 0.1);
     background: linear-gradient(145deg, #333, #666);
-}
+} 
 
-
-.calculator input[type="submit"]:active,
-.calculator button:active {
-    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3), 
-    inset -2px -2px 5px rgba(255, 255, 255, 0.1);
-    background: #2e2e2e;
-}
-
-button[type="submit"] {
+.calculator button[type="submit"] {
     grid-column: span 4;
     background-color: #43a047;
-    color: #fff;
+    color: #a7fdc9;
     font-weight: bold;
     height: 70px;
-    transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-    background-color: #66bb6a;
-}
-
-button[type="submit"]:active {
-    background-color: #388e3c;
-}
-.clear-button {
-    background-color: #e53935;
-    color: #fff;
-}
-
-.clear-button:hover {
-    background-color: #f44336;
-}
-
-.clear-button:active {
-    background-color: #c62828;
-}
-
-.equal-button {
-    grid-column: span 4;
-    background-color: #4caf50;
-    color: #fff;
     font-size: 1.8em;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 2px solid #388e3c;
+}
+
+.calculator button[type="submit"]:hover {
+    background-color: #66bb6a;
+    border-color: #2e7d32;
+}
+
+.calculator button[type="submit"][name="submit"] {
+    background-color: #43a047;
+}
+
+.calculator button[type="submit"][name="submit"]:hover {
+    background-color: #66bb6a;
+    border-color: #2e7d32;
+}
+
+.calculator input[type="submit"].clear-button {
+    background: linear-gradient(145deg, #e24236, #8f1b13);
+    color: #f4b4b3;
     height: 70px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, box-shadow 0.3s;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 2px solid #b71c1c;
 }
 
-.equal-button:hover {
-    background-color: #45a049;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+.calculator input[type="submit"].clear-button:hover {
+    background: linear-gradient(145deg, #d14431, #c43926);
+    border-color: #d32f2ff1;
+    color: #ffae00;
 }
 
-.equal-button:active {
-    background-color: #388e3c;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+input[type="submit"].operation {
+    background: linear-gradient(145deg, #df9c20, 
+    #bb4d22);
+    font-weight: bold;
+    font-size: 1.8em;
+    border: 2px solid #993d0d;
+    color: #e9b58b;
 }
+
+input[type="submit"].operation:hover {
+    background: linear-gradient(145deg, #ff7e36, #e6641f);
+    border-color: #cc4e18;
+    color: #ffc107;
+}
+
