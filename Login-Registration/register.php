@@ -17,7 +17,7 @@ include('includes/navbar.php');
                         <form action="process_registration.php" method="POST">
                             <!-- Name -->
                             <div class="form-group mb-3 position-relative"> 
-                                <label for="name">Name</label>
+                                <label for="name">Full Name</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                     <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>

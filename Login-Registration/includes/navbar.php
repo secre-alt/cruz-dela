@@ -15,7 +15,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link <?php if ($current_page == 'index.php') echo 'active'; ?>" href="index.php">
+                                    <a class="nav-link <?php if ($current_page == 'Home.php') echo 'active'; ?>" href="Home.php">
                                         <i class="fas fa-home"></i> Home
                                     </a>
                                 </li>
