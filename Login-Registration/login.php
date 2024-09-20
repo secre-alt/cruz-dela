@@ -14,6 +14,7 @@ include('includes/navbar.php');
                     </div>
                     <div class="card-body">
                         <form action="process_login.php" method="POST">
+                            
                             <!-- Email Address -->
                             <div class="form-group mb-3 position-relative"> 
                                 <label for="email">Email Address</label>

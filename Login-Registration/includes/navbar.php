@@ -45,7 +45,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <style>
     .bg-primary-gradient {
-        background: linear-gradient(45deg, #0d6efd, #6610f2); /* Blue to purple gradient */
+        background: linear-gradient(45deg, #0d6efd, #6610f2); 
         padding: 1rem 0;
     }
 
@@ -72,7 +72,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
     }
 
-    /* Optional: Adjust padding on larger screens for better aesthetics */
+   
     @media (min-width: 992px) {
         .navbar {
             padding: 1.5rem 0;

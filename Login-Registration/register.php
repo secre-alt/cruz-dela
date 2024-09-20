@@ -14,7 +14,7 @@ include('includes/navbar.php');
                         <h5 class="mb-0">Registration Form</h5> 
                     </div>
                     <div class="card-body">
-                        <form action="process_registration.php" method="POST">
+                        <form action="form_code.php" method="POST">
                             <!-- Name -->
                             <div class="form-group mb-3 position-relative"> 
                                 <label for="name">Full Name</label>
