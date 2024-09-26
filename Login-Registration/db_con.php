@@ -2,7 +2,7 @@
 $server = "localhost";  
 $username = "root";
 $password = "";       
-$database = "Secre-Alt";  
+$database = "secre-alt";  
 
 // Create connection
 $con = mysqli_connect($server, $username, $password, $database);
