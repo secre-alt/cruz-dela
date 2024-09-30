@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $page_title = "Registration Form";
 include('includes/header.php');
 include('includes/navbar.php');
@@ -9,6 +10,14 @@ include('includes/navbar.php');
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
+                <div class="alert">
+                    <?php 
+                        if (isset($_SESSION['status'])) { 
+                            echo "<h4>".$_SESSION['status']. "</h4>";
+                            unset($_SESSION["status"]);
+                        }
+                    ?>
+                </div>
                 <div class="card shadow-lg">
                     <div class="card-header bg-primary text-white">
                         <h5 class="mb-0">Registration Form</h5> 
