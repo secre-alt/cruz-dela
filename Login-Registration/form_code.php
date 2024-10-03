@@ -9,42 +9,37 @@ use PHPMailer\PHPMailer\Exception;
 require 'vendor/autoload.php';
 
 function sendemail_verify($name, $email, $verify_token) {
-    $mail = new PHPMailer(true);
-
-    try {
+        $mail = new PHPMailer(true);
+    
         //Server settings
-        $mail->SMTPDebug = SMTP::DEBUG_OFF;                      // Disable verbose debug output for production
+       // $mail->SMTPDebug = SMTP::DEBUG_OFF;                      // Disable verbose debug output for production
         $mail->isSMTP();                                         
         $mail->Host       = 'smtp.gmail.com';                     
         $mail->SMTPAuth   = true;                                
-        $mail->Username   = getenv('SMTP_USERNAME');              // Use environment variables for credentials
-        $mail->Password   = getenv('SMTP_PASSWORD');             
+        $mail->Username   = "triannesano@gmail.com";              // Use environment variables for credentials
+        $mail->Password   = "wilp oevw kqok nysn";             
         $mail->SMTPSecure = "ssl";                                
         $mail->Port       = 465;                                 
 
         //Recipients
-        $mail->setFrom(getenv('SMTP_USERNAME'), 'Mailer');
+        $mail->setFrom('triannesano@gmail.com', $name);
         $mail->addAddress($email, $name);     // Send email to the registered user
 
         //Content
         $mail->isHTML(true);                                  
         $mail->Subject = 'Email verification from secre-alt';
-        $mail_template = "
+        $email_template = "
                 <h1>You have Registered with Secre-alt</h1>
                 <h5>Verify your Email address to login with the link below:</h5>
                 <br><a href='http://localhost/Dela_Cruz/Login-Registration/verify_email.php?token=$verify_token'>Click here to verify</a>
         ";
-        $mail->Body    = $mail_template;
+        $mail->Body    = $email_template;
         $mail->AltBody = 'Verify your email address to complete the registration.';
 
         $mail->send();
-        echo 'Verification email has been sent';
-    } catch (Exception $e) {
-        error_log("Mail Error: {$mail->ErrorInfo}");
-        echo 'Failed to send email verification.';
-    }
-}
+        echo 'Message has been sent';
 
+    }
 if (isset($_POST['register_btn'])) {
     $name = $_POST['name'];
     $phone = $_POST['phone']; 
@@ -78,5 +73,5 @@ if (isset($_POST['register_btn'])) {
         }
      }
      $stmt->close();
-} 
+    }
 ?>
