@@ -31,7 +31,7 @@ function sendemail_verify($name, $email, $verify_token) {
         $email_template = "
                 <h1>You have Registered with Secre-alt</h1>
                 <h5>Verify your Email address to login with the link below:</h5>
-                <br><a href='http://localhost/Dela_Cruz/Login-Registration/verify_email.php?token=$verify_token'>Click here to verify</a>
+                <br><a href='http://localhost/Dela_Cruz/Login-Registration/verify_email.php?token=$verify_token'>Click here to verify</a></b>
         ";
         $mail->Body    = $email_template;
         $mail->AltBody = 'Verify your email address to complete the registration.';
