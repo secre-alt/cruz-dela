@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `users` (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    phone VARCHAR(15),
+    phone VARCHAR(11),
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     verify_token VARCHAR(255) NOT NULL,
