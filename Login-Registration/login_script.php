@@ -34,7 +34,7 @@ if (isset($_POST['login_btn'])) {
                 exit();
             }
         } else {
-            $_SESSION['status'] =   "Please verify your Email address to Login.";
+            $_SESSION['status'] = "Please verify your Email address to Login.";
             header("Location: login.php");
         }
     } else {

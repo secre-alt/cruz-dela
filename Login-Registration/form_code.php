@@ -55,7 +55,8 @@ if (isset($_POST['register_btn'])) {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        $_SESSION['status'] = "Email ID already exists!";
+        $_SESSION['status'] = "It looks like you already have an account with us. 
+        Try logging in or use a different email address.";
         header("Location: register.php");
     } else {
         $stmt = $con->prepare("INSERT INTO users (name, phone, email, password, verify_token) VALUES (?, ?, ?, ?, ?)");
@@ -64,11 +65,13 @@ if (isset($_POST['register_btn'])) {
 
         if ($query_run) {
             sendemail_verify($name, $email, $verify_token);
-            $_SESSION['status'] = "Registration Successful! Please verify your Email Address.";
+            $_SESSION['status'] = "🎉 Success! We’ve sent you a confirmation email.
+             Please check your inbox to verify your account and get started";
             header("Location: register.php");
         } else {
             error_log("SQL Error: " . $stmt->error);
-            $_SESSION['status'] = "Registration Failed. Please try again.";
+            $_SESSION['status'] = "Oops! Something went wrong with your registration. 
+            Please try again, or contact support if the issue persists.";
             header("Location: register.php");
         }
      }

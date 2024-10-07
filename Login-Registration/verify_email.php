@@ -2,47 +2,48 @@
 session_start();
 include('db_con.php'); // Include your database connection file
 
-if (isset($_GET['token'])) {
-    $verify_token = $_GET['token'];
+if(isset($_GET['token'])) {
 
-    // Prepare a statement to select the user with the given verify token
-    $stmt = $con->prepare("SELECT verify_token, email_verified FROM users WHERE verify_token = ? LIMIT 1");
-    $stmt->bind_param('s', $verify_token);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $token = $_GET['token'];
+    $verify_query = "SELECT verify_token,verify_status FROM users WHERE verify_token='$token' LIMIT 1";
+    $verify_query_run = mysqli_query($con, $verify_query);
 
-    if ($result->num_rows > 0) {
-        // Fetch the user data
-        $row = $result->fetch_assoc();
+    if(mysqli_num_rows($verify_query_run) > 0) {
 
-        if ($row['email_verified'] == 0) {
-            // Update the email_verified status to 1
-            $stmt = $con->prepare("UPDATE users SET email_verified = 1 WHERE verify_token = ?");
-            $stmt->bind_param('s', $verify_token);
-            $update_run = $stmt->execute();
+        $row = mysqli_fetch_array($verify_query_run);
+        if($row['verify_status'] == "0") {
 
-            if ($update_run) {
-                $_SESSION['status'] = "Your email has been verified successfully!";
+            $clicked_token = $row['verify_token'];
+            $update_query = "UPDATE users SET verify_status='1' WHERE verify_token='$clicked_token' LIMIT 1";
+            $update_query_run = mysqli_query($con, $update_query);
+
+            if($update_query_run) {
+
+                $_SESSION['status'] = 'Your account has been verified successfully.';
                 header("Location: login.php");
-                exit();
+                exit(0);
+
             } else {
-                $_SESSION['status'] = "Verification failed. Please try again.";
-                header("Location: register.php");
-                exit();
+
+                $_SESSION['status'] = 'Verification Failed!';
+                header("Location: login.php");
+                exit(0);
             }
+
         } else {
-            $_SESSION['status'] = "Your email is already verified!";
+            $_SESSION['status'] = 'Email already verified. Please Login!';
             header("Location: login.php");
-            exit();
+            exit(0);
         }
+
     } else {
-        $_SESSION['status'] = "Invalid token.";
-        header("Location: register.php");
-        exit();
+
+        $_SESSION['status'] = 'This token does not Exist!';
+        header("Location: login.php");
     }
 } else {
-    $_SESSION['status'] = "No verification token provided.";
-    header("Location: register.php");
-    exit();
+
+    $_SESSION['status'] = 'Not Allowed!';
+    header("Location: login.php");
 }
 ?>

@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $page_title = "Login Form";
 include('includes/header.php');
 include('includes/navbar.php');
@@ -8,6 +9,18 @@ include('includes/navbar.php');
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
+               
+                    <?php 
+                    if (isset($_SESSION['status'])) {
+                        ?>
+                        <div class="alert alert-success">
+                            <h5><?= $_SESSION['status']; ?></h5>
+                        </div>
+                        <?php
+                        unset($_SESSION['status']);
+                    }
+                    ?>
+               
                 <div class="card shadow-lg">
                     <div class="card-header bg-primary text-white">
                         <h5 class="mb-0">Login Form</h5> 
