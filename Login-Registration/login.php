@@ -10,17 +10,9 @@ include('includes/navbar.php');
         <div class="row justify-content-center">
             <div class="col-md-6">
                
-                    <?php 
-                    if (isset($_SESSION['status'])) {
-                        ?>
-                        <div class="alert alert-success">
-                            <h5><?= $_SESSION['status']; ?></h5>
-                        </div>
-                        <?php
-                        unset($_SESSION['status']);
-                    }
-                    ?>
-               
+                   <!-- Include alert messages -->
+                <?php include('includes/alert.php'); ?>
+  
                 <div class="card shadow-lg">
                     <div class="card-header bg-primary text-white">
                         <h5 class="mb-0">Login Form</h5> 

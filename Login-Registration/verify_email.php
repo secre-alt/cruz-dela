@@ -19,19 +19,19 @@ if(isset($_GET['token'])) {
 
             if($update_query_run) {
 
-                $_SESSION['status'] = 'Your account has been verified successfully.';
+                $_SESSION['status'] = 'Your account has been verified successfully. You can now log in.';
                 header("Location: login.php");
                 exit(0);
 
             } else {
 
-                $_SESSION['status'] = 'Verification Failed!';
+                $_SESSION['status'] = 'Verification Failed! Please try again';
                 header("Location: login.php");
                 exit(0);
             }
 
         } else {
-            $_SESSION['status'] = 'Email already verified. Please Login!';
+            $_SESSION['status'] = 'Email already verified. Please Login! Proceed to log in.';
             header("Location: login.php");
             exit(0);
         }
