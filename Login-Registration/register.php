@@ -5,28 +5,20 @@ include('includes/header.php');
 include('includes/navbar.php');
 ?>
 
-
 <div class="py-5 bg-light"> 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
             
-            <!-- Alert Messages -->
-                <div class="alert <?php echo isset($_SESSION['status']) ? (strpos($_SESSION['status'], 'Success') !== false ? 'alert-success' : (strpos($_SESSION['status'], 'exists') !== false ? 'alert-warning' : 'alert-danger')) : ''; ?> alert-dismissible fade show" role="alert">
                     <?php 
-                        if (isset($_SESSION['status'])) { 
-                            if (strpos($_SESSION['status'], 'Success') !== false) {
-                                echo "<i class='fas fa-check-circle'></i> " . $_SESSION['status'];
-                            } elseif (strpos($_SESSION['status'], 'exists') !== false) {
-                                echo "<i class='fas fa-exclamation-circle'></i> " . $_SESSION['status'];
-                            } else {
-                                echo "<i class='fas fa-times-circle'></i> " . $_SESSION['status'];
-                            }
-                            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                            unset($_SESSION["status"]); // Clear status after displaying
-                        }
-                    ?>
-                </div>
+                    // Check if session is set
+                   if (isset($_SESSION['status'])) {   
+
+                       include('includes/alert.php');
+                       
+                            }                 
+                        ?>
+
                 <div class="card shadow-lg">
                     <div class="card-header bg-primary text-white">
                         <h5 class="mb-0">Registration Form</h5> 

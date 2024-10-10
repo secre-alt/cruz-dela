@@ -1,29 +1,43 @@
-<div class="alert">
-    <?php 
-    if (isset($_SESSION['status'])) {
-        // Set the alert type and icon based on the status message
-        $alertType = 'info'; // Default to info
-        $icon = '<i class="fas fa-info-circle"></i>';
+<?php  
+if (isset($_SESSION['status'])) { 
+    echo "<script>
+        document.addEventListener('DOMContentLoaded', function() {";
 
-        if (strpos($_SESSION['status'], 'successfully') !== false) {
-            $alertType = 'success';
-            $icon = '<i class="fas fa-check-circle"></i>';
-        } elseif (strpos($_SESSION['status'], 'Failed') !== false) {
-            $alertType = 'danger';
-            $icon = '<i class="fas fa-times-circle"></i>';
-        } elseif (strpos($_SESSION['status'], 'already verified') !== false) {
-            $alertType = 'warning';
-            $icon = '<i class="fas fa-exclamation-circle"></i>';
-        }
-
-        // Display the alert
-        echo '<div class="alert alert-' . $alertType . ' alert-dismissible fade show" role="alert">';
-        echo $icon . ' ' . $_SESSION['status'];
-        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-        echo '</div>';
-
-        unset($_SESSION['status']);
+    // Success alert
+    if (strpos($_SESSION['status'], 'Success') !== false) {
+        echo "Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '" . $_SESSION['status'] . "',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });";
+    } 
+    // Warning alert (e.g., user exists)
+    elseif (strpos($_SESSION['status'], 'exists') !== false) {
+        echo "Swal.fire({
+            icon: 'warning',
+            title: 'Warning',
+            text: '" . $_SESSION['status'] . "',
+            confirmButtonColor: '#f0ad4e',
+            confirmButtonText: 'OK'
+        });";
+    } 
+    // Error alert
+    else {
+        echo "Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '" . $_SESSION['status'] . "',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'OK'
+        });";
     }
-    ?>
-</div>
 
+    echo "});
+    </script>";
+
+    // Clear the session status after displaying the alert
+    unset($_SESSION['status']);
+}
+?>

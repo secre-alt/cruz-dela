@@ -35,9 +35,13 @@ function sendemail_verify($name, $email, $verify_token) {
         ";
         $mail->Body    = $email_template;
         $mail->AltBody = 'Verify your email address to complete the registration.';
-
-        $mail->send();
-        echo 'Message has been sent';
+              
+        try {
+            $mail->send();
+            echo 'Message has been sent';
+        } catch (Exception $e) {
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
 
     }
 if (isset($_POST['register_btn'])) {

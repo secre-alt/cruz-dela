@@ -40,7 +40,7 @@ include('includes/navbar.php');
                             
                             <!-- Submit Button -->
                             <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary w-100">Login</button> 
+                                <button type="submit" name="login_btn" class="btn btn-primary w-100">Login</button> 
                             </div>
                         </form>
                     </div>
