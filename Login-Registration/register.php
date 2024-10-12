@@ -1,23 +1,22 @@
 <?php 
 session_start();
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 $page_title = "Registration Form";
 include('includes/header.php');
 include('includes/navbar.php');
+include('includes/alert.php'); 
 ?>
+
 
 <div class="py-5 bg-light"> 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-            
-                    <?php 
-                    // Check if session is set
-                   if (isset($_SESSION['status'])) {   
-
-                       include('includes/alert.php');
-                       
-                            }                 
-                        ?>
+                
+            <?php ?>
 
                 <div class="card shadow-lg">
                     <div class="card-header bg-primary text-white">
@@ -74,6 +73,10 @@ include('includes/navbar.php');
                             <div class="form-group text-center">
                                 <button type="submit" name="register_btn" class="btn btn-primary w-100">Register</button> 
                             </div>
+
+                            <div class="form-group text-center mt-3">
+                                <p>Already have an account? <a href="login.php">Login</a></p>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -81,5 +84,6 @@ include('includes/navbar.php');
         </div>
     </div>
 </div>
+
 
 <?php include('includes/footer.php'); ?>

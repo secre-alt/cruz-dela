@@ -1,3 +1,9 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+<?php session_start(); ?>
 <?php 
 include('db_con.php');
 
@@ -16,12 +22,13 @@ if (isset($_POST['login_btn'])) {
 
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
+            $hashed_password = $row['password'];
+
 
             // Verify the password
-            if (password_verify($password, $row['password'])) {
-                echo $row['verify_status'];
-                // Set session variables if needed and redirect to dashboard
-                $_SESSION['user'] = $row['email']; // example
+            if (password_verify($password, $hashed_password)) {
+
+                $_SESSION['user'] = $row['email']; 
                 header("Location: dashboard.php");
                 exit(0);
             } else {

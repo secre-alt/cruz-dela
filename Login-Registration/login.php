@@ -1,5 +1,10 @@
-<?php 
-session_start();
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+<?php session_start(); ?>
+<?php
 $page_title = "Login Form";
 include('includes/header.php');
 include('includes/navbar.php');
@@ -9,8 +14,7 @@ include('includes/navbar.php');
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-               
-                   <!-- Include alert messages -->
+              
                 <?php include('includes/alert.php'); ?>
   
                 <div class="card shadow-lg">
@@ -40,7 +44,12 @@ include('includes/navbar.php');
                             
                             <!-- Submit Button -->
                             <div class="form-group text-center">
-                                <button type="submit" name="login_btn" class="btn btn-primary w-100">Login</button> 
+                                <button type="submit" name="login_btn" class="btn btn-primary w-100">Login</button>
+                            </div>
+
+
+                            <div class="form-group text-center mt-3">
+                                <p>Don't have an account yet? <a href="register.php">Sign Up</a></p>
                             </div>
                         </form>
                     </div>
