@@ -28,11 +28,25 @@ if (isset($_POST['login_btn'])) {
             // Verify the password
             if (password_verify($password, $hashed_password)) {
 
-                $_SESSION['user'] = $row['email']; 
-                header("Location: dashboard.php");
-                exit(0);
+                if ($row['verify_status'] == 1) {
+                    $_SESSION['authenticated'] = TRUE;
+                    $_SESSION['auth_user'] = [
+                        'username' => $row['name'],
+                        'phone' => $row['phone'],
+                        'email' => $row['email'],
+                    ];
+
+                    $_SESSION['status'] = "You are Logged In Successfully.";
+                    header("Location: dashboard.php");
+                    exit(0);
+
+                } else {
+                    $_SESSION['status'] = "Please verify your Email Address to Login.";
+                    header("Location: login.php");
+                    exit(0); 
+                }
             } else {
-                $_SESSION['status'] = "Invalid Email or Password";
+                $_SESSION['status'] = "Incorrect password.";
                 header("Location: login.php");
                 exit(0);
             }

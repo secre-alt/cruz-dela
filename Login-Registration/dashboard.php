@@ -1,6 +1,6 @@
 <?php 
-session_start(); 
 
+include('authentication.php');
 $page_title = "Dashboard";
 include('includes/header.php');
 include('includes/navbar.php');
