@@ -71,7 +71,7 @@ if (isset($_POST['register_btn'])) {
 
         if ($query_run) {
             if (sendemail_verify($name, $email, $verify_token)) {
-                $_SESSION['status'] = "🎉 Success! We’ve sent you a confirmation email. Please check your inbox to verify your account and get started.";
+                $_SESSION['status'] = "Success! We’ve sent you a confirmation email. Please check your inbox to verify your account and get started.";
             } else {
                 $_SESSION['status'] = "Oops! We couldn't send the verification email. Please try again.";
             }

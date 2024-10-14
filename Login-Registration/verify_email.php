@@ -34,7 +34,7 @@ if(isset($_GET['token'])) {
             $update_query_run = $update_query->execute();
 
             if ($update_query_run) {
-                $_SESSION['status'] = '🎉 Your account has been verified successfully. You can now log in.';
+                $_SESSION['status'] = 'Your account has been verified successfully. You can now log in.';
                 header("Location: login.php");
                 exit(0);
             } else {

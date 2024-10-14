@@ -33,7 +33,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                                     <a class="nav-link <?php if ($current_page == 'login.php') echo 'active'; ?>" href="login.php">
                                         <i class="fas fa-sign-in-alt"></i> Login
                                     </a>
-                                </li>
+                                </li>                           
                             </ul>
                         </div>
                     </div>
