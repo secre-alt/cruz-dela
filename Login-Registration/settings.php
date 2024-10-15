@@ -12,12 +12,13 @@ include('includes/header.php');
 include('includes/navbar.php');
 ?>
 
+
 <div class="py-5 bg-light"> 
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card shadow-lg">
-                    <div class="card-header bg-success text-white text-center">
+                    <div class="card-header bg-primary bg-gradient text-white text-center">
                         <h3><i class="bi bi-gear"></i> Account Settings</h3>
                     </div>
                     <div class="card-body">
@@ -46,5 +47,7 @@ include('includes/navbar.php');
         </div> <!-- /.row -->
     </div> <!-- /.container -->
 </div> <!-- /.py-5 -->
+
+
 
 <?php include('includes/footer.php'); ?>

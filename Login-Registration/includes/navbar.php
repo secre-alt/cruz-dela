@@ -24,6 +24,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
                                         <i class="fas fa-tachometer-alt"></i> Dashboard
                                     </a>
                                 </li>
+                                <?php if(!isset($_SESSION['authenticated'])) :?>
                                 <li class="nav-item">
                                     <a class="nav-link <?php if ($current_page == 'register.php') echo 'active'; ?>" href="register.php">
                                         <i class="fas fa-user-plus"></i> Sign up
@@ -33,7 +34,16 @@ $current_page = basename($_SERVER['PHP_SELF']);
                                     <a class="nav-link <?php if ($current_page == 'login.php') echo 'active'; ?>" href="login.php">
                                         <i class="fas fa-sign-in-alt"></i> Login
                                     </a>
-                                </li>                           
+                                </li>
+                                <?php  endif ?>
+
+                                <?php if(isset($_SESSION['authenticated'])) :?>
+                                <li class="nav-item">
+                                    <a class="nav-link <?php if ($current_page == 'logout.php') echo 'active'; ?>" href="logout.php">
+                                        <i class="fas fa-sign-out-alt"></i> Logout
+                                    </a>
+                                </li>
+                                <?php  endif ?>
                             </ul>
                         </div>
                     </div>
@@ -52,6 +62,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
     .navbar-dark .navbar-brand {
         color: #fff;
         font-weight: bold;
+        font-size: 2rem;
     }
 
     .navbar-dark .nav-link {
@@ -76,6 +87,10 @@ $current_page = basename($_SERVER['PHP_SELF']);
     @media (min-width: 992px) {
         .navbar {
             padding: 1.5rem 0;
+
         }
+
     }
+   
+
 </style>

@@ -29,6 +29,7 @@ if (isset($_POST['login_btn'])) {
             if (password_verify($password, $hashed_password)) {
 
                 if ($row['verify_status'] == 1) {
+                    
                     $_SESSION['authenticated'] = TRUE;
                     $_SESSION['auth_user'] = [
                         'username' => $row['name'],
