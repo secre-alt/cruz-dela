@@ -1,4 +1,4 @@
-<?php
+<?php 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -24,7 +24,6 @@ if (isset($_POST['login_btn'])) {
             $row = $result->fetch_assoc();
             $hashed_password = $row['password'];
 
-
             // Verify the password
             if (password_verify($password, $hashed_password)) {
 
@@ -37,28 +36,33 @@ if (isset($_POST['login_btn'])) {
                         'email' => $row['email'],
                     ];
 
-                    $_SESSION['status'] = "You are Logged In Successfully.";
+                    // Success message for successful login
+                    $_SESSION['status'] = "Welcome back, " . $row['name'] . "! You have successfully logged in. Get ready to explore your dashboard.";
                     header("Location: dashboard.php");
                     exit(0);
 
                 } else {
-                    $_SESSION['status'] = "Please verify your Email Address to Login.";
+                    // Warning message for unverified email
+                    $_SESSION['status'] = "Your email hasn't been verified yet. Please check your inbox for the verification link to activate your account.";
                     header("Location: login.php");
                     exit(0); 
                 }
             } else {
-                $_SESSION['status'] = "Incorrect password.";
+                // Error message for incorrect password
+                $_SESSION['status'] = "The password you entered is incorrect. Please try again or reset your password if you’ve forgotten it.";
                 header("Location: login.php");
                 exit(0);
             }
         } else {
-            $_SESSION['status'] = "Invalid Email or Password";
+            // New error message for unregistered email
+            $_SESSION['status'] = "The email address you entered is not registered. Please check your email or sign up for a new account.";
             header("Location: login.php");
             exit(0);
         }
 
     } else {
-        $_SESSION['status'] = "All fields are mandatory";
+        // Warning message for empty fields
+        $_SESSION['status'] = "All fields are required. Please fill in both your email and password to continue.";
         header("Location: login.php");
         exit(0);
     }

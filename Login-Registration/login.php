@@ -15,7 +15,7 @@ include('includes/navbar.php');
         <div class="row justify-content-center">
             <div class="col-md-6">
               
-                <?php include('includes/alert.php'); ?>
+                <?php include('includes/alert_login.php'); ?>
   
                 <div class="card shadow-lg">
                     <div class="card-header bg-primary text-white">

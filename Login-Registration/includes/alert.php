@@ -5,10 +5,13 @@ error_reporting(E_ALL);
 
 
 if (isset($_SESSION['status'])) {
+    $status_message = $_SESSION['status'];
     $icon = 'info'; // Default icon
-    if (strpos($_SESSION['status'], 'Success') !== false) {
+
+    if (strpos($status_message, 'Success') !== false || strpos($status_message, 'verified success')) {
         $icon = 'success';
-    } elseif (strpos($_SESSION['status'], 'Oops') !== false) {
+    } elseif (strpos($status_message, 'Oops') !== false || strpos($status_message, 'Incorrect password') !== false
+    strpos($status_message, 'Invald Email or Passwrod') !== false) {
         $icon = 'error';
     }
 
