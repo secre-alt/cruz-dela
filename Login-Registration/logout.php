@@ -8,7 +8,7 @@ error_reporting(E_ALL);
 unset($_SESSION['authenticated']);
 unset($_SESSION['auth_user']);
 
-$_SESSION['status'] = "You are Logged Out Successfully";
+$_SESSION['status'] = "kung ako nalang diay?";
 header('Location: login.php');
 exit(0);
 

@@ -19,7 +19,9 @@ include('includes/navbar.php');
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
             <?php include('includes/alert.php'); ?>
+
             <div class="card shadow-lg border-0 rounded-lg">
                 <div class="card-header bg-primary text-white text-center rounded-top">
                     <h3><i class="bi bi-person-circle"></i> User Dashboard</h3>

@@ -1,16 +1,21 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+
+<?php
 if (isset($_SESSION['status'])) {
     $status_message = $_SESSION['status']; // Store the session status in a variable
     $icon = 'info'; // Default icon
-    $title = 'Notification'; // Default title
+    $title = 'Notice!'; // Default title
     $button_text = 'OK'; // Default button text
 
     // Check for success, warning, or error messages
-    if (strpos($status_message, 'You have successfully logged in') !== false) {
+    if (stripos($status_message, 'You have successfully logged in') !== false || stripos($status_message, 'Welcome back, ') !== false) {
         $icon = 'success';
-        $title = 'Welcome Back!';
-        $button_text = 'Let\'s Go!';
-    } elseif (strpos($status_message, 'Success') !== false || strpos($status_message, 'verified successfully') !==false) {
+        
+    } elseif (strpos($status_message, 'Success') !== false || strpos($status_message, 'verified successfully') !== false) {
         $icon = 'success';
         $title = 'Success!';
         $button_text = 'Let\'s Go!';
@@ -26,10 +31,14 @@ if (isset($_SESSION['status'])) {
         $icon = 'warning';
         $title = 'Incomplete Fields';
         $button_text = 'Fill Details';
-    } elseif (strpos($status_message, 'already been verified') !== false) {
+    } elseif (strpos($status_message, 'already been verified') !== false || strpos($status_message, 'Please Login') !== false) {
         $icon = 'info';
         $title = 'Please Login';
         $button_text = 'Login';
+    } elseif (strpos($status_message, 'kung ako nalang diay?') !== false) {
+        $icon = 'success'; // For logout success
+        $title = 'LODS!';
+        $button_text = 'Please nani';
     }
 
     echo "<script>
