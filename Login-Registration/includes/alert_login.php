@@ -12,9 +12,10 @@ if (isset($_SESSION['status'])) {
     $button_text = 'OK'; // Default button text
 
     // Check for success, warning, or error messages
-    if (stripos($status_message, 'You have successfully logged in') !== false || stripos($status_message, 'Welcome back, ') !== false) {
+    if (strpos($status_message, 'verified success') !== false) {
         $icon = 'success';
-        
+        $title = 'Success!';
+      
     } elseif (strpos($status_message, 'Success') !== false || strpos($status_message, 'verified successfully') !== false) {
         $icon = 'success';
         $title = 'Success!';
@@ -33,7 +34,7 @@ if (isset($_SESSION['status'])) {
         $button_text = 'Fill Details';
     } elseif (strpos($status_message, 'already been verified') !== false || strpos($status_message, 'Please Login') !== false) {
         $icon = 'info';
-        $title = 'Please Login';
+        $title = 'Please Login!';
         $button_text = 'Login';
     } elseif (strpos($status_message, 'kung ako nalang diay?') !== false) {
         $icon = 'success'; // For logout success
