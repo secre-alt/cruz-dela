@@ -7,7 +7,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg navbar-dark">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="#">Student Org Portal</a>
+                        <a class="text-warning navbar-brand" href="#">Student Org Portal</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -61,8 +61,13 @@ $current_page = basename($_SERVER['PHP_SELF']);
     .navbar-dark .navbar-brand, .navbar-dark .nav-link {
         color: rgba(255, 255, 255, 0.85);
         transition: color 0.3s ease;
+        font-weight: bold;
     }
 
+    .navbar-brand {
+        color: #ffff00;
+        font-size: 30px;
+    }
     .navbar-dark .nav-link:hover {
         color: #f8f9fa;
     }

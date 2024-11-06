@@ -26,26 +26,34 @@ include('includes/db_config.php');
 
             
             <div class="card shadow-lg border-0 rounded-lg">
-                <div class="card-header bg-primary text-white text-center rounded-top">
+                <div class="card-header bg-dark text-white text-center rounded-top">
                     <h3 class="mb-0"><i class="bi bi-building me-2"></i> Organization Dashboard</h3>
                 </div>
                 <div class="card-body p-5">
                     <div class="text-center mb-4">
-                        <h5>
+                        <h3>
                             <?php 
                             $organizationName = $_SESSION['auth_user']['organization_name'] ?? "Your Organization";
                             echo "Welcome, <strong>" . htmlspecialchars($organizationName) . "</strong>!";
                             ?>
-                        </h5>
+                        </h3>
                         <p class="text-muted mb-4">This is your hub for managing everything related to your organization. Easily update your profile, adjust settings, and stay connected with your members.</p>
                     </div>
 
                     <!-- Divider with icon for better UX -->
                     <div class="d-flex justify-content-center align-items-center my-4">
                         <hr class="flex-grow-1">
-                        <span class="px-3 text-muted small">Manage Your Organization</span>
+                        <span class="px-3 text-muted manage-text">
+                            <i class="bi bi-gear-fill me-2"></i>Manage Your Organization   
+                        </span>
                         <hr class="flex-grow-1">
                     </div>
+
+                     <div class="d-flex justify-content-center gap-3 my-3">
+                    <a href="add_member.php" class="btn btn-primary btn-sm">Add Member</a>
+                    <a href="view_events.php" class="btn btn-secondary btn-sm">View Events</a>
+                    <a href="settings.php" class="btn btn-outline-secondary btn-sm">Settings</a>
+                </div>
 
                     
 
@@ -54,7 +62,7 @@ include('includes/db_config.php');
                     <!-- Members List -->
                     <div class="mt-4">
                         <h2>Members List</h2>
-                        <a href="add_member.php" class="btn btn-primary mb-3">Add Member</a>
+                        <a href="add_member.php" class="btn btn-dark mb-3">Add Member</a>
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered">
                                 <thead class="table-dark text-center">
@@ -86,9 +94,11 @@ include('includes/db_config.php');
                                                 <td>" . htmlspecialchars($row['email']) . "</td>
                                                 <td>" . htmlspecialchars($row['phone']) . "</td>
                                                 <td class='text-center'>
+                                                    <div class='d-flex justify-content-center w-100'>
                                                     <a href='edit_member.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-warning btn-sm me-1'>Edit</a>
                                                     <a href='delete_member.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-danger btn-sm'>Delete</a>
-                                                </td>
+                                                    </div>
+                                                    </td>
                                             </tr>";
                                         }
                                     } else {
@@ -103,10 +113,11 @@ include('includes/db_config.php');
                     <!-- Event Tracker Section -->
                     <div class="mt-5">
                         <h2>Upcoming Events</h2>
-                        <a href="add_event.php" class="btn btn-primary mb-3">Add Events</a>
+                        <a href="add_event.php" class="btn btn-dark mb-3">Add Events</a>
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered">
                                 <thead class="table-dark text-center">
+                                    <tr>
                                         <th>ID</th>
                                         <th>Event Name</th>
                                         <th>Date</th>
@@ -115,26 +126,33 @@ include('includes/db_config.php');
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
+                                <tbody> 
                                     <?php 
                                     
                                     $sql = "SELECT * FROM events ORDER BY event_date ASC";
                                     $result = $conn->query($sql);
 
                                     if ($result && $result->num_rows > 0) {
-                                        while ($row = $reult->fetch_assoc()) {
+                                        while ($row = $result->fetch_assoc()) {
                                             echo "<tr>
-                                                <td class='text-center'> " . htmlspecialchars($row['id']) . " </td>
-                                                <td> " . htmlspecialchars($row['event_name']) . " </td>
-                                                <td> " . htmlspecialchars($row['event_date']) . " </td>
-                                                <td> " . htmlspecialchars($row['location']) . " </td>
-                                                <td> " . htmlspecialchars($row['description']) . " </td>
+                                                <td class='text-center'>" . htmlspecialchars($row['id']) . "</td>
+                                                <td>" . htmlspecialchars($row['event_name']) . "</td>
+                                                <td>" . htmlspecialchars($row['event_date']) . "</td>
+                                                <td>" . htmlspecialchars($row['location']) . " </td>
+                                                <td>" . htmlspecialchars($row['description']) . "</td>
                                                 <td class='text-center'> 
-                                                    <a href='edit_event.php'
-                                                </td>
-                                            </tr?";
+                                                   <div class='d-flex justify-content-center w-100'>
+                                                     <a href='edit_event.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-warning btn-sm me-1'>Edit</a>
+                                                    <a href='delete_event.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-danger btn-sm'>Delete</a>
+                                                   </div>
+                                                 </td>
+                                            </tr>";
                                         }
+                                    } else {
+                                        echo "<tr><td colspan='6' class='text-center'>No upcoming events yet</td></tr>";
                                     }
                                     ?>
+                                </tbody>
                             </table>
                         </div>
                     </div> 
@@ -143,5 +161,29 @@ include('includes/db_config.php');
         </div> <!-- /.col-lg-10 -->
     </div> <!-- /.row -->
 </div> <!-- /.container -->
+
+<style>
+    .card-body {
+        background-color: #f8f9fa;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    .card-body h5 {
+    font-size: 1.25rem;
+    color: #333;
+    font-weight: 600;
+    }
+
+    .card-body p {
+        font-size: 1.1rem;
+        color: #666;
+    }
+
+    .manage-text {
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+</style>
 
 <?php include('includes/footer.php'); ?>
