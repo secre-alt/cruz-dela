@@ -11,10 +11,10 @@ include('includes/navbar.php');
             <div class="col-md-12">
                 <h1 class="display-4">Welcome to the Student Organization Portal</h1>
                 <p class="lead">Your central hub for managing memberships, events, and resources for student organizations</p>
-                <a href="register.php" class="btn btn-primary btn-lg">
+                <a href="register.php" class="btn btn-dark btn-lg">
                     <i class="fas fa-user-plus"></i> Join an Organization
                 </a>
-                <a href="login.php" class="btn btn-outline-secondary btn-lg ms-2">
+                <a href="login.php" class="btn btn-secondary btn-lg ms-2">
                     <i class="fas fa-sign-in-alt"></i> Member Login
                 </a>
             </div>

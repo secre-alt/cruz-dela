@@ -19,7 +19,7 @@ include('includes/navbar.php');
                 <?php include('includes/alert_login.php'); ?>
   
                 <div class="card shadow-lg">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header bg-dark text-white">
                         <h5 class="mb-0">Login to Your Organization</h5> 
                     </div>
                     <div class="card-body">
@@ -45,7 +45,7 @@ include('includes/navbar.php');
                             
                             <!-- Submit Button -->
                             <div class="form-group text-center">
-                                <button type="submit" name="login_btn" class="btn btn-primary w-100">Login</button>
+                                <button type="submit" name="login_btn" class="btn btn-dark w-100">Login</button>
                             </div>
 
                             <!-- Forgot Password Link -->
@@ -63,5 +63,7 @@ include('includes/navbar.php');
         </div>
     </div>
 </div>
+
+
 
 <?php include('includes/footer.php'); ?>

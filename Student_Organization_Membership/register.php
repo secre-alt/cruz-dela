@@ -15,7 +15,7 @@ include('includes/alert.php');
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card shadow-lg">
-                    <div class="card-header bg-primary text-white">
+                    <div class="card-header bg-dark text-white">
                         <h5 class="mb-0">Join an Organization</h5> 
                     </div>
                     <div class="card-body">
@@ -58,7 +58,7 @@ include('includes/alert.php');
                             
                             <!-- Submit Button -->
                             <div class="form-group text-center">
-                                <button type="submit" name="register_btn" class="btn btn-primary w-100">Join Organization</button> 
+                                <button type="submit" name="register_btn" class="btn btn-dark w-100">Join Organization</button> 
                             </div>
 
                             <div class="form-group text-center mt-3">

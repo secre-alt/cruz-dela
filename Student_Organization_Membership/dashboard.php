@@ -50,7 +50,7 @@ include('includes/db_config.php');
                     </div>
 
                      <div class="d-flex justify-content-center gap-3 my-3">
-                    <a href="add_member.php" class="btn btn-primary btn-sm">Add Member</a>
+                    <a href="add_member.php" class="btn btn-dark btn-sm">Add Member</a>
                     <a href="view_events.php" class="btn btn-secondary btn-sm">View Events</a>
                     <a href="settings.php" class="btn btn-outline-secondary btn-sm">Settings</a>
                 </div>
