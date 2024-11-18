@@ -8,42 +8,33 @@ include('includes/alert.php');
 include('db_con.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // CSRF token validation
-    if (isset($_POST['csrf_token']) && $_POST['csrf_token'] === $_SESSION['csrf_token']) {
-        
-        // Sanitize and retrieve form inputs
-        $full_name = $con->real_escape_string($_POST['full_name']);
-        $course = $con->real_escape_string($_POST['course']);
-        $year_level = intval($_POST['year_level']);
-        $position = $con->real_escape_string($_POST['position']);
-        $email = $con->real_escape_string($_POST['email']);
-        $phone = $con->real_escape_string($_POST['phone']);
+    // Sanitize and retrieve form inputs
+    $full_name = $con->real_escape_string($_POST['full_name']);
+    $course = $con->real_escape_string($_POST['course']);
+    $year_level = intval($_POST['year_level']);
+    $position = $con->real_escape_string($_POST['position']);
+    $email = $con->real_escape_string($_POST['email']);
+    $phone = $con->real_escape_string($_POST['phone']);
 
-        // Check for duplicate email
-        $check_email = "SELECT * FROM members WHERE email='$email'";
-        $result = $con->query($check_email);
+    // Check for duplicate email
+    $check_email = "SELECT * FROM members WHERE email='$email'";
+    $result = $con->query($check_email);
 
-        if ($result->num_rows > 0) {
-            showAlert('error', 'Error', 'Email already exists. Try another one.');
-        } else {
-            // Insert new member into the database
-            $sql = "INSERT INTO members (full_name, course, year_level, position, email, phone) 
-                    VALUES ('$full_name', '$course', $year_level, '$position', '$email', '$phone')";
-
-            if ($con->query($sql) === TRUE) {
-                showAlert('success', 'Success', 'New member added successfully!');
-                echo "<script>setTimeout(function(){ window.location.href='dashboard.php'; }, 2000);</script>";
-            } else {
-                showAlert('error', 'Error', 'Failed to add member. Please try again. ' . $con->error);
-            }
-        }
+    if ($result->num_rows > 0) {
+        showAlert('error', 'Error', 'Email already exists. Try another one.');
     } else {
-        showAlert('error', 'Error', 'Invalid CSRF token.');
+        // Insert new member into the database
+        $sql = "INSERT INTO members (full_name, course, year_level, position, email, phone) 
+                VALUES ('$full_name', '$course', $year_level, '$position', '$email', '$phone')";
+
+        if ($con->query($sql) === TRUE) {
+            showAlert('success', 'Success', 'New member added successfully!');
+            echo "<script>setTimeout(function(){ window.location.href='dashboard.php'; }, 2000);</script>";
+        } else {
+            showAlert('error', 'Error', 'Failed to add member. Please try again. ' . $con->error);
+        }
     }
 }
-
-// Generate CSRF token
-$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 ?>
 
 <div class="container my-5">
@@ -55,7 +46,6 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
                </div>
                <div class="card-body">
                    <form action="add_member.php" method="POST">
-                       <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                        <div class="mb-3">
                            <label for="full_name" class="form-label">Full Name</label>
                            <input type="text" class="form-control" id="full_name" name="full_name" required>
@@ -65,14 +55,14 @@ $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
                            <input type="text" class="form-control" id="course" name="course" required>
                        </div>
                        <div class="mb-3">
-                       <label for="yearLevel">Year Level</label>
-                            <select class="form-control" id="yearLevel" name="year_level" required>
-                                <option value="" disabled selected>Select Year</option>
-                                <option value="1st Year">1st Year</option>
-                                <option value="2nd Year">2nd Year</option>
-                                <option value="3rd Year">3rd Year</option>
-                                <option value="4th Year">4th Year</option>
-                            </select>
+                           <label for="yearLevel">Year Level</label>
+                           <select class="form-control" id="yearLevel" name="year_level" required>
+                               <option value="" disabled selected>Select Year</option>
+                               <option value="1st Year">1st Year</option>
+                               <option value="2nd Year">2nd Year</option>
+                               <option value="3rd Year">3rd Year</option>
+                               <option value="4th Year">4th Year</option>
+                           </select>
                        </div>
                        <div class="mb-3">
                            <label for="position" class="form-label">Position</label>

@@ -1,17 +1,8 @@
 <?php
 session_start();
+include('includes/alert.php');
 include('db_con.php');
 
-function showAlert($type, $title, $message) {
-    echo "<script>
-        Swal.fire({
-            icon: '$type',
-            title: '$title',
-            text: '$message',
-            confirmButtonText: 'OK'
-        });
-    </script>";
-}
 
 // Check if the 'id' is provided in the URL
 if (isset($_GET['id'])) {
@@ -20,7 +11,7 @@ if (isset($_GET['id'])) {
     // Prepare the SQL DELETE statement
     $sql = "DELETE FROM members WHERE id = $id";
 
-    if ($conn->query($sql) === TRUE) {
+    if ($con->query($sql) === TRUE) {
         showAlert('success', 'Deleted', 'Member deleted successfully!');
     } else {
         showAlert('error', 'Error', 'Failed to delete member. Please try again.');

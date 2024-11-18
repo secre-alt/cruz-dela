@@ -1,39 +1,39 @@
 <?php
 include('includes/header.php'); 
-include('db_con.php');
 include('includes/alert.php');
+include('db_con.php');
 
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
 
-    $result = $conn->query("SELECT * FROM members WHERE id = $id");
+    $result = $con->query("SELECT * FROM members WHERE id = $id");
     $member = $result->fetch_assoc();
 
     if (!$member) {
         showAlert('error', 'Not Found', 'Member not Found.');
-        echo "<script>setTimeout(function(){ window.location.href='index.php'; }, 2000);</script>";
+        echo "<script>setTimeout(function(){ window.location.href='dashboard.php'; }, 2000);</script>";
         exit();
     }
 } else {
-    echo "<script>window.location.href='index.php';</script>";
+    echo "<script>window.location.href='dashboard.php';</script>";
     exit();    
     }
 
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $full_name = $conn->real_escape_string($_POST['full_name']);
-        $course = $conn->real_escape_string($_POST['course']);
+        $full_name = $con->real_escape_string($_POST['full_name']);
+        $course = $con->real_escape_string($_POST['course']);
         $year_level = intval($_POST['year_level']);
-        $position = $conn->real_escape_string($_POST['position']);
-        $email = $conn->real_escape_string($_POST['email']);
-        $phone = $conn->real_escape_string($_POST['phone']);
+        $position = $con->real_escape_string($_POST['position']);
+        $email = $con->real_escape_string($_POST['email']);
+        $phone = $con->real_escape_string($_POST['phone']);
     
         // Update SQL query
         $sql = "UPDATE members SET full_name='$full_name', course='$course', year_level=$year_level, position='$position', email='$email', phone='$phone' WHERE id=$id";
     
-        if ($conn->query($sql) === TRUE) {
+        if ($con->query($sql) === TRUE) {
             showAlert('success', 'Updated', 'Member updated successfully!');
-            echo "<script>setTimeout(function(){ window.location.href='index.php'; }, 2000);</script>";
+            echo "<script>setTimeout(function(){ window.location.href='dashboard.php'; }, 2000);</script>";
         } else {
             showAlert('error', 'Error', 'Failed to update member. Please try again.');
         }
