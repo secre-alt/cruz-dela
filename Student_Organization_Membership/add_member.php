@@ -41,7 +41,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card shadow-lg border-0">
-                
+                <div class="card-header bg-dark text-white text-center">
+                    <h4 class="mb-0">Add New Member</h4>
+                </div>
+                <div class="card-body">
+                    <form action="add_member.php" method="POST">
+                        <div class="form-floating mb-3">
+                            <input type="text" name="full_name" id="full_name" class="form-control" placeholder="Full Name" required>
+                            <label for="full_name"> <i class="bi bi-person me-2"></i>Full Name</label>
+                        </div>
+
+                         <div class="form-floating mb-3">
+                            <input type="text" name="course" id="course" class="form-control" placeholder="Full Name" required>
+                            <label for="course"> <i class="bi bi-book me-2"></i>Course</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <select name="year_level" id="year_level" class="form-select" required>
+                                <option value="" disabled selected></option>
+                                <option value="1">1st Year</option>
+                                <option value="2">2nd Year</option>
+                                <option value="3">3rd Year</option>
+                                <option value="4">4th Year</option>
+                            </select>
+                            <label for="year_level"><i class="bi bi-calendar me-2"></i>Year Level</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" name="position" id="position" class="form-control" placeholder="Full Name" required>
+                            <label for="position"> <i class="bi bi-briefcase me-2"></i>Position</label>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" name="email" id="email" class="form-control" placeholder="Full Name" required>
+                            <label for="email"> <i class="bi bi-envelope me-2"></i>Email</label>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
