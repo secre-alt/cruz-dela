@@ -1,6 +1,6 @@
 <?php
 include('includes/header.php'); 
-include('includes/db_config.php');
+include('db_con.php');
 include('includes/alert.php');
 
 if (isset($_GET['id'])) {

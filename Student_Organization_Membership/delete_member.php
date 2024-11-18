@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('includes/db_config.php');
+include('db_con.php');
 
 function showAlert($type, $title, $message) {
     echo "<script>

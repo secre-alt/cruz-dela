@@ -15,7 +15,7 @@ if (!isset($_SESSION['authenticated'])) {
 $page_title = "Dashboard";
 include('includes/header.php');
 include('includes/navbar.php');
-include('includes/db_config.php');
+include('db_con.php');
 ?>
 
 <div class="container my-5"> 
@@ -81,7 +81,7 @@ include('includes/db_config.php');
                                     <?php
                                     // Fetch members from the database
                                     $sql = "SELECT * FROM members";
-                                    $result = $conn->query($sql);
+                                    $result = $con->query($sql);
 
                                     if ($result && $result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
@@ -130,7 +130,7 @@ include('includes/db_config.php');
                                     <?php 
                                     
                                     $sql = "SELECT * FROM events ORDER BY event_date ASC";
-                                    $result = $conn->query($sql);
+                                    $result = $con->query($sql);
 
                                     if ($result && $result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
