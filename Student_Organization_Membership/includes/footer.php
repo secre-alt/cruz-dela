@@ -9,6 +9,19 @@
 <!-- Include SweetAlert JS -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
+<script>
+    $(document).ready(function () {
+        $('#membersTable').DataTable({
+            paging: true,         // Enable pagination
+            searching: true,      // Enable search
+            ordering: true,       // Enable sorting
+            lengthMenu: [5, 10, 25, 50], // Page length options
+            language: {
+                search: "Filter records:", // Customize search box placeholder
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

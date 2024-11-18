@@ -64,7 +64,7 @@ include('db_con.php');
                         <h2>Members List</h2>
                         <a href="add_member.php" class="btn btn-dark mb-3">Add Member</a>
                         <div class="table-responsive">
-                            <table class="table table-hover table-bordered">
+                            <table id="membersTable" class="table table-hover table-bordered">
                                 <thead class="table-dark text-center">
                                     <tr>
                                         <th>ID</th>
@@ -80,7 +80,7 @@ include('db_con.php');
                                 <tbody>
                                     <?php
                                     // Fetch members from the database
-                                    $sql = "SELECT * FROM members";
+                                    $sql = "SELECT * FROM members WHERE is_deleted = 0";
                                     $result = $con->query($sql);
 
                                     if ($result && $result->num_rows > 0) {
