@@ -24,7 +24,15 @@ if (isset($_SESSION['status'])) {
         $icon = 'success';
         $title = 'Welcome Back!';
         $button_text = 'Let\'s Go!';
-    }
+    } elseif (stripos($status_message, 'Member updated successfully') !== false || stripos($status_message, 'updated') !== false) {
+        $icon = 'success';
+        $title = 'Updated!';
+        $button_text = 'Let\'s Go!';
+    } elseif (stripos($status_message, 'Member restored successfully!') !== false || stripos($status_message, '') !== false) {
+        $icon = 'success';
+        $title = 'Success!';
+      
+    } 
     echo "<script>
         document.addEventListener('DOMContentLoaded', function() {
             Swal.fire({

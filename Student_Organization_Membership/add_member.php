@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
 
                          <div class="form-floating mb-3">
-                            <input type="text" name="course" id="course" class="form-control" placeholder="Full Name" required>
+                            <input type="text" name="course" id="course" class="form-control" placeholder="Course" required>
                             <label for="course"> <i class="bi bi-book me-2"></i>Course</label>
                         </div>
 
@@ -68,18 +68,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="text" name="position" id="position" class="form-control" placeholder="Full Name" required>
+                            <input type="text" name="position" id="position" class="form-control" placeholder="Position" required>
                             <label for="position"> <i class="bi bi-briefcase me-2"></i>Position</label>
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="text" name="email" id="email" class="form-control" placeholder="Full Name" required>
+                            <input type="text" name="email" id="email" class="form-control" placeholder="Email Address" required>
                             <label for="email"> <i class="bi bi-envelope me-2"></i>Email</label>
                         </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone Number" required>
+                            <label for="phone"> <i class="bi bi-telephone me-2"></i>Phone Number</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark">Add Member</button>
+
+                       <div class="d-flex justify-content-between">
+                        <a href="dashboard.php" class="bnt btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i>Back</a>
+                       </div>
+             
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    
+    input.form-control:focus, select.form-select:focus {
+    border-color: #6c757d; /* Dark gray border */
+    box-shadow: 0 0 8px rgba(108, 117, 125, 0.5); /* Glow effect */
+    outline: none;
+    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    }
+
+    label {
+        font-weight: 500;
+        color: #6c757d;
+    }
+
+    button.btn {
+        transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    }
+
+    button.btn:hover {
+        background-color: #343a40; /* Darker hover color */
+        transform: scale(1.02);
+    }
+
+</style>
+
 <?php include('includes/footer.php'); ?>

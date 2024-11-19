@@ -95,7 +95,7 @@ include('db_con.php');
                                                 <td>" . htmlspecialchars($row['phone']) . "</td>
                                                 <td class='text-center'>
                                                     <div class='d-flex justify-content-center w-100'>
-                                                    <a href='edit_member.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-warning btn-sm me-1'>Edit</a>
+                                                    <a href='edit_member.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-warning btn-sm me-1'>Update</a>
                                                     <a href='delete_member.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-danger btn-sm'>Delete</a>
                                                     </div>
                                                     </td>
@@ -103,6 +103,24 @@ include('db_con.php');
                                         }
                                     } else {
                                         echo "<tr><td colspan='8' class='text-center'>No members found</td></tr>";
+                                    }
+
+                                    // Undo Button
+                                    $sql = "SELECT * FROM members WHERE is_deleted = 0";
+                                    $result = $con->query($sql);
+
+                                    // Display "Deleted Members" section
+                                    $deleted_sql = "SELECT * FROM members WHERE is_deleted = 1";
+                                    $deleted_result = $con->query($deleted_sql);
+
+                                    if ($deleted_result && $deleted_result->num_rows > 0) {
+                                        echo "<h2>Deleted Members</h2>";
+                                        while ($row = $deleted_result->fetch_assoc()) {
+                                            echo "<div>
+                                                    <p>" . htmlspecialchars($row['full_name']) . "</p>
+                                                    <a href='undo_delete.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-secondary btn-sm'>Undo</a>
+                                                </div>";
+                                        }
                                     }
                                     ?>
                                 </tbody>
