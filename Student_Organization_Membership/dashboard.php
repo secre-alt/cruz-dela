@@ -64,7 +64,7 @@ include('db_con.php');
                         <h2>Members List</h2>
                         <a href="add_member.php" class="btn btn-dark mb-3">Add Member</a>
                         <div class="table-responsive">
-                            <table id="membersTable" class="table table-hover table-bordered">
+                            <table id="membersTable" class="table table-hover table-bordered align-middle">
                                 <thead class="table-dark text-center">
                                     <tr>
                                         <th>ID</th>
