@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-include('includes/alert.php');
 include('db_con.php');
 
 // Check if 'id' is provided in the URL
@@ -23,3 +22,5 @@ if (isset($_GET['id'])) {
     header('Location: dashboard.php');
 }
 ?>
+
+<?php include('includes/footer.php'); ?>

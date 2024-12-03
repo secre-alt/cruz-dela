@@ -1,5 +1,9 @@
 <?php
-include('includes/header.php'); 
+session_start();
+
+$page_title = "Update Member";
+include('includes/header.php');
+include('includes/navbar.php'); 
 include('db_con.php');
 
 if (isset($_GET['id'])) {
