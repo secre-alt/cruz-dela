@@ -2,7 +2,7 @@
 session_start();
 include('db.php');
 
-if(isset($_POST['login_now_btn']))
+if(isset($_POST['login_btn']))
 {
 if(!empty(trim($_POST['email'])) && !empty(trim($_POST['password'])))
 {
