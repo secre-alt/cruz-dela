@@ -30,49 +30,15 @@ include('db_con.php');
                 </div>
                 <div class="card-body p-5">
                     <div class="text-center mb-4">
-                        <h3>
+                        <h2>
                             <?php 
                             $organizationName = $_SESSION['auth_user']['organization_name'] ?? "Your Organization";
                             echo "Welcome, <strong>" . htmlspecialchars($organizationName) . "</strong>!";
                             ?>
-                        </h3>
-                        <p class="text-muted mb-4">This is your hub for managing everything related to your organization. Easily update your profile, adjust settings, and stay connected with your members.</p>
+                        </h2>
+                        <p class="text-muted mb-4">This is your hub for managing everything related to your organization.stay connected with your members.</p>
                     </div>
-
-                    <!-- Divider with icon for better UX -->
-                    <div class="d-flex justify-content-center align-items-center my-4">
-                        <hr class="flex-grow-1">
-                        <span class="px-3 text-muted manage-text">
-                            <i class="bi bi-gear-fill me-2"></i>Manage Your Organization   
-                        </span>
-                        <hr class="flex-grow-1">
-                    </div>
-
-                     <div class="d-flex justify-content-center gap-3 my-3">
-                    <a href="add_member.php" class="btn btn-dark btn-sm">Add Member</a>
-                    <a href="view_events.php" class="btn btn-secondary btn-sm">View Events</a>
-                    <a href="settings.php" class="btn btn-outline-secondary btn-sm">Settings</a>
-                </div>
-                
-                <div class="deleted-section mt-5">
-                        <h2>Deleted Members</h2>
-                        <?php
-                        $deleted_sql = "SELECT * FROM members WHERE is_deleted = 1";
-                        $deleted_result = $con->query($deleted_sql);
-
-                        if ($deleted_result && $deleted_result->num_rows > 0) {
-                            while ($row = $deleted_result->fetch_assoc()) {
-                                echo "<div class='deleted-member mb-3'>
-                                        <p>" . htmlspecialchars($row['full_name']) . "</p>
-                                        <a href='#' class='btn btn-undo btn-sm' data-id='" . htmlspecialchars($row['id']) . "'>Undo</a>
-                                      </div>";
-                            }
-                        } else {
-                            echo "<p>No deleted members</p>";
-                        }
-                        ?>
-                    </div>
-
+                        
                     <hr class="my-4">
 
                     <!-- Members List -->
@@ -122,56 +88,32 @@ include('db_con.php');
                                     }
                                     ?>      
                                 </tbody>
-                            </table>                         
-                        </div>
-                    </div>
+                            </table> 
+                            
+                            <div class="search-bar mt-3 mb-4">
+                                <input type="text" id="searchDeleted" class="form-control" placeholder="Search deleted members...">
+                            </div>
+                            
 
-                   
+                            <div class="deleted-section mt-5">
+                                    <h2>Deleted Members</h2>
+                                    <?php
+                                    $deleted_sql = "SELECT * FROM members WHERE is_deleted = 1";
+                                    $deleted_result = $con->query($deleted_sql);
 
-                    <!-- Event Tracker Section -->
-                    <div class="mt-5">
-                        <h2>Upcoming Events</h2>
-                        <a href="add_event.php" class="btn btn-dark mb-3">Add Events</a>
-                        <div class="table-responsive">
-                            <table id="eventsTable" class="table table-hover table-bordered">
-                                <thead class="table-dark text-center">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Event Name</th>
-                                        <th>Date</th>
-                                        <th>Location</th>
-                                        <th>Description</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody> 
-                                    <?php 
-                                    
-                                    $sql = "SELECT * FROM events ORDER BY event_date ASC";
-                                    $result = $con->query($sql);
-
-                                    if ($result && $result->num_rows > 0) {
-                                        while ($row = $result->fetch_assoc()) {
-                                            echo "<tr>
-                                                <td class='text-center'>" . htmlspecialchars($row['id']) . "</td>
-                                                <td>" . htmlspecialchars($row['event_name']) . "</td>
-                                                <td>" . htmlspecialchars($row['event_date']) . "</td>
-                                                <td>" . htmlspecialchars($row['location']) . " </td>
-                                                <td>" . htmlspecialchars($row['description']) . "</td>
-                                                <td class='text-center'> 
-                                                   <div class='d-flex justify-content-center w-100'>
-                                                     <a href='edit_event.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-warning btn-sm me-1'>Edit</a>
-                                                    <a href='delete_event.php?id=" . htmlspecialchars($row['id']) . "' class='btn btn-danger btn-sm'>Delete</a>
-                                                   </div>
-                                                 </td>
-                                            </tr>";
+                                    if ($deleted_result && $deleted_result->num_rows > 0) {
+                                        while ($row = $deleted_result->fetch_assoc()) {
+                                            echo "<div class='deleted-member mb-3'>
+                                                    <p>" . htmlspecialchars($row['full_name']) . "</p>
+                                                    <a href='#' class='btn btn-undo btn-sm' data-id='" . htmlspecialchars($row['id']) . "'>Undo</a>
+                                                </div>";
                                         }
                                     } else {
-                                        echo "<tr><td colspan='6' class='text-center no-records'>No upcoming events yet</td></tr>";
+                                        echo "<p>No deleted members</p>";
                                     }
                                     ?>
-                                </tbody>
-                            </table>
+                                </div>
+                            </div>
                         </div>
                     </div> 
                 </div> <!-- /.card-body -->
@@ -358,9 +300,9 @@ include('db_con.php');
     margin-left: 10px;
 }
 
-/* Styling for the Undo Button */
+
 .btn-undo {
-    background-color: #28a745; /* Green color for undo */
+    background-color: #28a745; 
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -377,6 +319,58 @@ include('db_con.php');
     transform: scale(1.05);
 }
 
-</style>
+/* General Dark Mode Styling */
+body.dark-mode {
+    background-color: #121212; /* Dark background for the whole page */
+    color: #eaeaea; /* Light text */
+}
 
+/* Styling for Containers in Dark Mode */
+body.dark-mode .container {
+    background-color: #1e1e1e !important; /* Dark background for container */
+    color: #eaeaea !important; /* Light text */
+}
+
+/* Styling for Cards in Dark Mode */
+body.dark-mode .card {
+    background-color: #1f1f1f !important; /* Dark background for card */
+    color: #eaeaea !important; /* Light text */
+    border: 1px solid #333333; /* Subtle border */
+}
+
+body.dark-mode .card-header {
+    background-color: #292929 !important; /* Slightly lighter for header */
+    color: #ffffff !important; /* White text for header */
+}
+
+/* Styling for Tables in Dark Mode */
+body.dark-mode .table {
+    background-color: #1e1e1e; /* Dark table background */
+    color: #eaeaea; /* Light text */
+    border-color: #333333; /* Darker borders */
+}
+
+body.dark-mode .table thead th {
+    background-color: #292929; /* Darker header */
+    color: #ffffff; /* White text */
+}
+
+body.dark-mode .table tbody tr:hover {
+    background-color: #3b3b3b; /* Hover effect in dark mode */
+}
+
+/* Styling for Buttons */
+body.dark-mode .btn {
+    background-color: #333333; /* Dark button background */
+    color: #eaeaea; /* Light button text */
+    border-color: #444444;
+}
+
+body.dark-mode .btn:hover {
+    background-color: #444444; /* Lighter on hover */
+    color: #ffffff;
+}
+
+</style>
+    
 <?php include('includes/footer.php'); ?>

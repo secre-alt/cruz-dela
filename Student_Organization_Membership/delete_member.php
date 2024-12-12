@@ -22,4 +22,4 @@ header("Location: dashboard.php");
 exit(0);
 ?>
 
-<?php include('includes/footer.php'); ?>
+

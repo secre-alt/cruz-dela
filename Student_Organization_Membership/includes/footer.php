@@ -104,7 +104,46 @@
                 });
             });
         });
+
+        document.getElementById('searchDeleted').addEventListener('input', function () {
+                const query = this.value.toLowerCase();
+                document.querySelectorAll('.deleted-member').forEach(member => {
+                    const memberName = member.querySelector('p').innerText.toLowerCase();
+                    member.style.display = memberName.includes(query) ? 'flex' : 'none';
+                });
+            });
+
         </script>
+
+        
+    <script>
+        const toggleDarkMode = () => {
+            const body = document.body;
+            const isDarkMode = body.classList.toggle('dark-mode');
+
+            // Persist the dark mode state in the session
+            fetch('set_dark_mode.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ darkMode: isDarkMode }),
+            });
+        };
+
+        // On page load, check if dark mode should be applied
+        window.onload = () => {
+            <?php if (isset($_SESSION['dark_mode']) && $_SESSION['dark_mode'] === true): ?>
+            document.body.classList.add('dark-mode');
+            <?php endif; ?>
+        };
+    </script>
+
+<?php if (isset($_SESSION['dark_mode']) && $_SESSION['dark_mode'] === true): ?>
+<body class="dark-mode">
+<?php else: ?>
+<body>
+<?php endif; ?>
 
 </body>
 </html>
