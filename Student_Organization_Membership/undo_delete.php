@@ -3,11 +3,11 @@ session_start();
 
 include('db_con.php');
 
-// Check if 'id' is provided in the URL
+
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']);
 
-    // Undo the soft delete
+
     $sql = "UPDATE members SET is_deleted = 0 WHERE id = $id";
 
     if ($con->query($sql) === TRUE) {

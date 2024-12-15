@@ -6,7 +6,7 @@ include('db_con.php');
 if (isset($_GET['id'])) {
     $memberId = intval($_GET['id']);
 
-    // Example: Soft delete by updating a flag
+    
     $sql = "UPDATE members SET is_deleted = 1 WHERE id = $memberId";
     
     if ($con->query($sql) === TRUE) {

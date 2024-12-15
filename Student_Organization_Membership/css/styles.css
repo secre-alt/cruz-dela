@@ -1,0 +1,203 @@
+/* Aesthetic Dashboard CSS */
+
+/* Global Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom right, #f5f7fa, #c3cfe2);
+    color: #333;
+}
+
+
+.container {
+    padding: 30px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background: linear-gradient(120deg, #272529, #232325);
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+}
+
+.card-body {
+    padding: 40px 30px;
+}
+
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    background: #fff;
+}
+
+.table th {
+    background: #6a11cb;
+    color: #fff;
+    padding: 12px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+}
+
+.table td {
+    padding: 10px;
+    text-align: center;
+}
+
+.table tbody tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.table tbody tr:hover {
+    background: #eef2f5;
+    transition: background 0.3s ease;
+}
+
+
+.btn {
+    font-size: 0.85rem;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    transition: background 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-dark {
+    background: #343a40;
+    color: #fff;
+}
+
+.btn-dark:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.btn-warning {
+    background: #ffcc00;
+    color: #fff;
+}
+
+.btn-warning:hover {
+    background: #e6b800;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: #ff5757;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #d94545;
+    transform: translateY(-2px);
+}
+
+.btn-undo {
+    background: #4caf50;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.btn-undo:hover {
+    background: #45a049;
+}
+
+
+.deleted-section {
+    background: #f9f9f9;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.deleted-member {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.deleted-member:hover {
+    transform: scale(1.02);
+}
+
+
+.search-bar {
+    margin: 20px 0;
+    text-align: right;
+}
+
+#searchDeleted {
+    padding: 12px 20px;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    transition: border-color 0.3s ease;
+}
+
+#searchDeleted:focus {
+    border-color: #6a11cb;
+    outline: none;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-body {
+    animation: fadeIn 1s ease;
+}
+
+
+@media (max-width: 768px) {
+    .card-body {
+        padding: 20px;
+    }
+
+    .btn {
+        font-size: 0.8rem;
+        padding: 8px 15px;
+    }
+
+    .table th, .table td {
+        font-size: 0.8rem;
+    }
+}

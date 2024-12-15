@@ -1,149 +1,91 @@
-  
-<!-- Bootstrap JS (with Popper.js) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- SweetAlert JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- Include SweetAlert CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-<!-- Include SweetAlert JS -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-  
-<!-- DataTables JS -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-        // Initialize DataTables for Members Table
+    $(document).ready(function () {
+        // Initialize DataTables
         $('#membersTable').DataTable({
             responsive: true,
             pageLength: 10,
-            lengthChange: true,
-            order: [[0, 'asc']], // Sort by the first column (ID) by default
+            order: [[0, 'asc']],
             language: {
                 search: "Search Members:",
-                paginate: {
-                    previous: "Previous",
-                    next: "Next"
-                }
+                paginate: { previous: "Previous", next: "Next" }
             }
         });
 
-        // Initialize DataTables for Events Table
         $('#eventsTable').DataTable({
             responsive: true,
             pageLength: 5,
-            lengthChange: true,
-            order: [[2, 'asc']], // Sort by the Date column by default
+            order: [[2, 'asc']],
             language: {
                 search: "Search Events:",
-                paginate: {
-                    previous: "Previous",
-                    next: "Next"
-                }
+                paginate: { previous: "Previous", next: "Next" }
             }
         });
-    });
-    </script>
 
-    <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const deleteButtons = document.querySelectorAll('.delete-btn');
-
-                deleteButtons.forEach(button => {
-                    button.addEventListener('click', function() {
-                        const memberId = this.getAttribute('data-id');
-
-                        Swal.fire({
-                            title: 'Are you sure?',
-                            text: "You can still undo this!",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#d33',
-                            cancelButtonColor: '#3085d6',
-                            confirmButtonText: 'Yes, delete it!',
-                            cancelButtonText: 'Cancel'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                if (memberId) {
-                                    window.location.href = 'delete_member.php?id=' + memberId;
-                                } else {
-                                    Swal.fire({
-                                        icon: 'error',
-                                        title: 'Error',
-                                        text: 'No member ID found for deletion.'
-                                    });
-                                }
-                            }
-                        });
-                    });
+        // Delete Button
+        document.querySelectorAll('.delete-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                const memberId = this.getAttribute('data-id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You can still undo this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed && memberId) {
+                        window.location.href = `delete_member.php?id=${memberId}`;
+                    }
                 });
             });
-        </script>
+        });
 
-
-        <script>
+        // Undo Button
         document.querySelectorAll('.btn-undo').forEach(button => {
             button.addEventListener('click', function () {
                 const memberId = this.getAttribute('data-id');
-                
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You can still undo this action!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Yes, undo it!',
-                    cancelButtonText: 'No, cancel!',
+                    cancelButtonText: 'No, cancel!'
                 }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Redirect to undo the delete action
+                    if (result.isConfirmed && memberId) {
                         window.location.href = `undo_delete.php?id=${memberId}`;
                     }
                 });
             });
         });
 
+        // Search Deleted Members
         document.getElementById('searchDeleted').addEventListener('input', function () {
-                const query = this.value.toLowerCase();
-                document.querySelectorAll('.deleted-member').forEach(member => {
-                    const memberName = member.querySelector('p').innerText.toLowerCase();
-                    member.style.display = memberName.includes(query) ? 'flex' : 'none';
-                });
+            const query = this.value.toLowerCase();
+            document.querySelectorAll('.deleted-member').forEach(member => {
+                const memberName = member.querySelector('p').innerText.toLowerCase();
+                member.style.display = memberName.includes(query) ? 'flex' : 'none';
             });
+        });
+    });
 
-        </script>
+    // Toggle Dark Mode
+    const toggleDarkMode = () => {
+        const body = document.body;
+        const isDarkMode = body.classList.toggle('dark-mode');
 
-        
-    <script>
-        const toggleDarkMode = () => {
-            const body = document.body;
-            const isDarkMode = body.classList.toggle('dark-mode');
-
-            // Persist the dark mode state in the session
-            fetch('set_dark_mode.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ darkMode: isDarkMode }),
-            });
-        };
-
-        // On page load, check if dark mode should be applied
-        window.onload = () => {
-            <?php if (isset($_SESSION['dark_mode']) && $_SESSION['dark_mode'] === true): ?>
-            document.body.classList.add('dark-mode');
-            <?php endif; ?>
-        };
-    </script>
-
-<?php if (isset($_SESSION['dark_mode']) && $_SESSION['dark_mode'] === true): ?>
-<body class="dark-mode">
-<?php else: ?>
-<body>
-<?php endif; ?>
-
-</body>
-</html>
+        fetch('set_dark_mode.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ darkMode: isDarkMode }),
+        });
+    };
+</script>
