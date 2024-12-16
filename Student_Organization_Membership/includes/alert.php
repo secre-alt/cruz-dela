@@ -104,4 +104,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 ?>
 
+<?php
+// Fetch deleted members from the database
+$deleted_sql = "SELECT * FROM members WHERE is_deleted = 1";
+$deleted_result = $con->query($deleted_sql);
+
+if ($deleted_result && $deleted_result->num_rows > 0) {
+    echo "<h2>Deleted Members</h2>";
+    while ($row = $deleted_result->fetch_assoc()) {
+        echo "<div class='deleted-member'>
+                <p>" . htmlspecialchars($row['full_name']) . "</p>
+                <a href='#' class='btn btn-secondary btn-sm undo-btn' data-id='" . htmlspecialchars($row['id']) . "'>Undo</a>
+              </div>";
+    }
+}
+?>
+
 
