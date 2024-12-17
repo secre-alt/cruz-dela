@@ -70,7 +70,6 @@ include('includes/navbar.php');
                         </div>
                     </div>
                     <?php endif; ?>
-
                 </div>
             </div>
         </div>
